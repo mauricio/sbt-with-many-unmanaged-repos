@@ -7,7 +7,7 @@
 
       import Dependencies._
 
-      var unmanagedListing = unmanagedJars :=  {
+      var unmanagedListing = unmanagedJars in Compile :=  {
         Dependencies.listUnmanaged( file(".").getAbsoluteFile )
       }
 
@@ -21,8 +21,8 @@
           scalacOptions := Seq("-deprecation", "-encoding", "utf8"),
           resolvers     ++= Dependencies.resolutionRepos,
           libraryDependencies ++= Seq(
-            Compile.akkaActor,
-            Compile.sprayServer,
+            C.akkaActor,
+            C.sprayServer,
             Test.specs2,
             Container.jettyWebApp,
             Container.akkaSlf4j,
@@ -55,7 +55,7 @@
         val logback = "1.0.0"
       }
 
-      object Compile {
+      object C {
         val akkaActor   = "se.scalablesolutions.akka" %  "akka-actor"      % V.akka    % "compile"
         val sprayServer = "cc.spray"                  %  "spray-server"    % V.spray   % "compile"
       }
